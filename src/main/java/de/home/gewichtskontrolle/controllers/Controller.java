@@ -25,22 +25,46 @@ public class Controller {
     @Autowired
     BerichtRepository berichtRepository;
 
-
-    @RequestMapping("/all")
-    public void allPrint() throws IOException {
+    @RequestMapping("/")
+    public String test() throws IOException {
         Iterable<Bericht> all = berichtRepository.findAll();
-        GsonBuilder builder = new GsonBuilder();
-        Gson gson = builder.create();
-        String json = gson.toJson(all);
 
-        BufferedWriter bw = new BufferedWriter(new FileWriter("text.json"));
-        bw.write(json);
+        int ein = 0;
+        int zwei = 0;
+        int drei = 0;
+        int vier = 0;
+
+        String d = "";
+        String c = "";
+
+        String df = "";
+        for (Bericht l : all) {
+
+            String g = l + "";
+
+            ein = g.indexOf(" ") + 6;
+            zwei = g.lastIndexOf(" ") - 1;
+            drei = g.lastIndexOf(" ") + 8;
+            vier = g.length() - 1;
+
+            d = g.substring(ein, zwei);
+            c = g.substring(drei, vier);
+
+            df = df + "{\"c\": [{\"v\": \"" + d + "\", \"f\": null}, {\"v\":" + c + ", \"f\": null}]}," + "\n";
+        }
+
+        String temp = "{\n" +
+                "  \"cols\": [\n" +
+                "    {\"id\": \"\", \"label\": \"data\", \"type\": \"string\"},\n" +
+                "    {\"id\": \"\", \"label\": \"weight\", \"type\": \"number\"}\n" +
+                "  ],\n" +
+                "  \"rows\": [" + df + "]\n" +
+                "}";
+
+        BufferedWriter bw = new BufferedWriter(new FileWriter("src/main/resources/static/text.json"));
+        bw.write(temp);
         bw.close();
 
-    }
-
-    @RequestMapping("/")
-    public String test() {
         return "index";
     }
 
@@ -50,14 +74,13 @@ public class Controller {
     }
 
     @RequestMapping("/bericht")
-    public String test2(Model model) {
-        model.addAttribute("message", "Здравствуйте User");
+    public String test2(Model model) throws IOException {
+
+        Iterable<Bericht> all = berichtRepository.findAll();
+
+        model.addAttribute("message", all);
         return "main";
     }
 
-    @RequestMapping("/test")
-    public String test3() {
-        return "test";
-    }
 
 }

@@ -9,8 +9,6 @@ function drawChart() {
         async: false
     }).responseText;
 
-    console.log(jsonData)
-
     var data = new google.visualization.DataTable(jsonData);
 
 

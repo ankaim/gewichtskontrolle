@@ -22,9 +22,9 @@ public class Bericht {
     @Id
     @GeneratedValue
     @Column
-    Integer id;
+    private Integer id;
     @Column
-    String data;
+    private String data;
     @Column
-    Integer weight;
+    private Integer weight;
 }
