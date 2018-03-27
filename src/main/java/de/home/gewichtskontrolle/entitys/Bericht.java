@@ -1,12 +1,15 @@
 package de.home.gewichtskontrolle.entitys;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.Date;
 
 /**
  * Implementation of {@link javax.persistence.Entity}
@@ -17,6 +20,8 @@ import javax.persistence.Id;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Bericht {
 
     @Id
@@ -24,7 +29,12 @@ public class Bericht {
     @Column
     private Integer id;
     @Column
-    private String data;
+    private String date;
     @Column
     private Integer weight;
+
+    public Bericht(String date, Integer weight) {
+        this.date = date;
+        this.weight = weight;
+    }
 }
