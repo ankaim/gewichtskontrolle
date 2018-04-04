@@ -34,9 +34,10 @@ public class Bericht {
     @Column
     private Integer weight;
 
-    public Bericht(Integer weight) {
+    public Bericht(Date date, Integer weight) {
 
-        this.date = new Date();
+
+        this.date = date;
         this.weight = weight;
     }
 }

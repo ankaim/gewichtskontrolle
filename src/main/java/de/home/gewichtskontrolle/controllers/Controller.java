@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Date;
 
 /**
  * Implementation of{@link org.springframework.stereotype.Controller}
@@ -123,6 +124,7 @@ public class Controller {
     }
     @RequestMapping("/main")
     public String meinMy(@ModelAttribute Bericht bericht, Model model){
+        bericht.setDate(new Date());
         berichtRepository.save(bericht);
         model.addAttribute("name", berichtRepository.findAll());
         return "index";
