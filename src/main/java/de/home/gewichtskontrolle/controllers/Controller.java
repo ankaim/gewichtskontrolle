@@ -116,5 +116,16 @@ public class Controller {
         return "main";
     }
 
+    @RequestMapping("/f")
+    public String formMy(Model model){
+        model.addAttribute("objectBericht", new Bericht());
+        return "editor";
+    }
+    @RequestMapping("/main")
+    public String meinMy(@ModelAttribute Bericht bericht, Model model){
+        berichtRepository.save(bericht);
+        model.addAttribute("name", berichtRepository.findAll());
+        return "index";
+    }
 
 }
