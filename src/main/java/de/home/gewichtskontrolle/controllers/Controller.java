@@ -89,19 +89,18 @@ public class Controller {
         model.addAttribute("bericht", new Bericht());
         return "form";
     }
-    @RequestMapping(value = "/te", method = RequestMethod.POST)
-    public String zwe(@ModelAttribute Bericht bericht, Model model){
-        berichtRepository.save(bericht);
-        model.addAttribute("name", bericht);
-        return "index";
-    }
-
 //    @RequestMapping(value = "/te", method = RequestMethod.POST)
-//    public String zwe(@ModelAttribute Bericht bericht){
-//        Bericht ber = new Bericht(4, "20.03.2018", 57);
-//        berichtRepository.save(ber);
+//    public String zwe(@ModelAttribute Bericht bericht, Model model){
+//        berichtRepository.save(bericht);
+//        model.addAttribute("name", bericht);
 //        return "index";
 //    }
+
+    @RequestMapping(value = "/te", method = RequestMethod.POST)
+    public String zwe(){
+        berichtRepository.saveMy("20.03.2018", 57);
+        return "index";
+    }
 
     @RequestMapping("/editor")
     public String test1() {

@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -29,12 +30,13 @@ public class Bericht {
     @Column
     private Integer id;
     @Column
-    private String date;
+    private Date date;
     @Column
     private Integer weight;
 
-    public Bericht(String date, Integer weight) {
-        this.date = date;
+    public Bericht(Integer weight) {
+
+        this.date = new Date();
         this.weight = weight;
     }
 }
