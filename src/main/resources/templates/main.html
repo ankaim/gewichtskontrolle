@@ -1,7 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="ru">
 
-<head th:replace="template :: head">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="graf.js"></script>
+    <link href="style.css" type="text/css" rel="stylesheet"/>
+
+    <title>Заглавная страница блога</title>
 
 </head>
 <body>
@@ -18,7 +28,7 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Отчет</a></li>
+                <li class="active"><a href="/f">Отчет</a></li>
                 <li><a href="editor">Добавить новые данные</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">

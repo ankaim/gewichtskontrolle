@@ -1,7 +1,5 @@
 package de.home.gewichtskontrolle.controllers;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import de.home.gewichtskontrolle.entitys.Bericht;
 import de.home.gewichtskontrolle.repositories.BerichtRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +8,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -28,7 +25,6 @@ public class Controller {
 
     @Autowired
     BerichtRepository berichtRepository;
-
 
 
     @RequestMapping("/")
@@ -86,7 +82,7 @@ public class Controller {
 //    }
 
     @RequestMapping(value = "/te", method = RequestMethod.GET)
-    public String ers(Model model){
+    public String ers(Model model) {
         model.addAttribute("bericht", new Bericht());
         return "form";
     }
@@ -96,17 +92,6 @@ public class Controller {
 //        model.addAttribute("name", bericht);
 //        return "index";
 //    }
-
-    @RequestMapping(value = "/te", method = RequestMethod.POST)
-    public String zwe(){
-        berichtRepository.saveMy("20.03.2018", 57);
-        return "index";
-    }
-
-    @RequestMapping("/editor")
-    public String test1() {
-        return "editor";
-    }
 
     @RequestMapping("/bericht")
     public String test2(Model model) throws IOException {
@@ -118,16 +103,17 @@ public class Controller {
     }
 
     @RequestMapping("/f")
-    public String formMy(Model model){
+    public String formMy(Model model) {
         model.addAttribute("objectBericht", new Bericht());
         return "editor";
     }
+
     @RequestMapping("/main")
-    public String meinMy(@ModelAttribute Bericht bericht, Model model){
+    public String meinMy(@ModelAttribute Bericht bericht, Model model) {
         bericht.setDate(new Date());
         berichtRepository.save(bericht);
         model.addAttribute("name", berichtRepository.findAll());
-        return "index";
+        return "main";
     }
 
 }

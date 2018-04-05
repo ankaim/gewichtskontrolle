@@ -10,6 +10,8 @@ function drawChart() {
     }).responseText;
 
     var data = new google.visualization.DataTable(jsonData);
+    console.log(data);
+    console.log(jsonData);
 
 
     var options = {
