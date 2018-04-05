@@ -1,5 +1,6 @@
 package de.home.gewichtskontrolle.controllers;
 
+import de.home.gewichtskontrolle.Addelement;
 import de.home.gewichtskontrolle.entitys.Bericht;
 import de.home.gewichtskontrolle.repositories.BerichtRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
 
@@ -26,48 +25,12 @@ public class Controller {
     @Autowired
     BerichtRepository berichtRepository;
 
+    Addelement addelement;
 
     @RequestMapping("/")
     public String test(Model model) throws IOException {
         model.addAttribute("message", "Hallo Anatoly");
-        Iterable<Bericht> all = berichtRepository.findAll();
-
-        int ein = 0;
-        int zwei = 0;
-        int drei = 0;
-        int vier = 0;
-
-        String d = "";
-        String c = "";
-
-        String df = "";
-        for (Bericht l : all) {
-
-            String g = l + "";
-
-            ein = g.indexOf(" ") + 6;
-            zwei = g.lastIndexOf(" ") - 1;
-            drei = g.lastIndexOf(" ") + 8;
-            vier = g.length() - 1;
-
-            d = g.substring(ein, zwei);
-            c = g.substring(drei, vier);
-
-            df = df + "{\"c\": [{\"v\": \"" + d + "\", \"f\": null}, {\"v\":" + c + ", \"f\": null}]}," + "\n";
-        }
-
-        String temp = "{\n" +
-                "  \"cols\": [\n" +
-                "    {\"id\": \"\", \"label\": \"data\", \"type\": \"string\"},\n" +
-                "    {\"id\": \"\", \"label\": \"weight\", \"type\": \"number\"}\n" +
-                "  ],\n" +
-                "  \"rows\": [" + df + "]\n" +
-                "}";
-
-        BufferedWriter bw = new BufferedWriter(new FileWriter("src/main/resources/static/text.json"));
-        bw.write(temp);
-        bw.close();
-
+        addelement.addJson();
         return "index";
     }
 
@@ -97,7 +60,6 @@ public class Controller {
     public String test2(Model model) throws IOException {
 
         Iterable<Bericht> all = berichtRepository.findAll();
-
         model.addAttribute("message", all);
         return "main";
     }
