@@ -1,5 +1,6 @@
 package de.home.gewichtskontrolle.controllers;
 
+import de.home.gewichtskontrolle.entitys.Bericht;
 import de.home.gewichtskontrolle.repositories.BerichtRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -35,8 +36,9 @@ public class Controller {
         return "redirect:/";
     }
 
-    @RequestMapping("/new")
-    public String newString(){
+    @RequestMapping("/form")
+    public String newString(Model model){
+        model.addAttribute("objectBericht", new Bericht());
         return "redirect:/";
     }
 

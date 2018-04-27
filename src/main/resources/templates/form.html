@@ -1,10 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head th:replace="template :: oslo">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 
+
+<form th:action="@{/}" th:object="${objectBericht}" method="post">
+
+    <input type="text" th:field="*{name}"/>
+    <input type="number" th:field="*{age}"/>
+
+    <button type="submit">Save</button>
+
+</form>
+<p th:text="${message}"></p>
 </body>
+<div th:replace="template :: foot"></div>
 </html>
