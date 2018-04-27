@@ -4,8 +4,10 @@ import de.home.gewichtskontrolle.entitys.Bericht;
 import de.home.gewichtskontrolle.repositories.BerichtRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * Implementation of{@link org.springframework.stereotype.Controller}
@@ -39,6 +41,13 @@ public class Controller {
     @RequestMapping("/form")
     public String newString(Model model){
         model.addAttribute("objectBericht", new Bericht());
+        return "form";
+    }
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public String save(@ModelAttribute Bericht bericht){
+        System.out.println(bericht.getId()+" "+bericht.getData()+" "+bericht.getWeight());
+        berichtRepository.save(bericht);
         return "redirect:/";
     }
 

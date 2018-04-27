@@ -5,10 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Implementation of {@link javax.persistence.Entity}
@@ -24,11 +21,8 @@ import javax.persistence.Id;
 public class Bericht {
 
     @Id
-    @GeneratedValue
-    @Column
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @Column
     private String data;
-    @Column
     private Integer weight;
 }
