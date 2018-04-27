@@ -46,9 +46,16 @@ public class Controller {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(@ModelAttribute Bericht bericht){
-        System.out.println(bericht.getId()+" "+bericht.getData()+" "+bericht.getWeight());
         berichtRepository.save(bericht);
         return "redirect:/";
+    }
+
+    @RequestMapping("/editor/{id}")
+    public String editor(@PathVariable("id") Integer id, Model model){
+        System.out.println(berichtRepository.findById(id).get().getData());
+        model.addAttribute("data", berichtRepository.findById(id).get().getData());
+        model.addAttribute("weight", berichtRepository.findById(id).get().getWeight());
+        return "editor";
     }
 
 }
