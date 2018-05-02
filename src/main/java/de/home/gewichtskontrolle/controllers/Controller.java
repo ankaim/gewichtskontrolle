@@ -4,10 +4,7 @@ import de.home.gewichtskontrolle.entitys.Bericht;
 import de.home.gewichtskontrolle.repositories.BerichtRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Implementation of{@link org.springframework.stereotype.Controller}
@@ -33,8 +30,13 @@ public class Controller {
         berichtRepository.deleteById(id);
         return "redirect:/";
     }
-    @RequestMapping("/update/{id}")
-    public String update(@PathVariable("id") Integer id){
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public String update(@RequestParam(value = "r", required = false)Integer w,
+                         @RequestParam(value = "rb", required = false)String ww,
+                         @RequestParam(value = "rbn", required = false)Integer www){
+        Bericht ber = new Bericht(w, ww, www);
+        System.out.println(ber);
+        berichtRepository.save(ber);
         return "redirect:/";
     }
 
@@ -52,9 +54,10 @@ public class Controller {
 
     @RequestMapping("/editor/{id}")
     public String editor(@PathVariable("id") Integer id, Model model){
-        System.out.println(berichtRepository.findById(id).get().getData());
+        model.addAttribute("id", id);
         model.addAttribute("data", berichtRepository.findById(id).get().getData());
         model.addAttribute("weight", berichtRepository.findById(id).get().getWeight());
+        model.addAttribute("objectBericht", new Bericht());
         return "editor";
     }
 

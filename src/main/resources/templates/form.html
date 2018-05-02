@@ -9,7 +9,7 @@
 
 <form th:action="@{/save}" th:object="${objectBericht}" method="post">
 
-    <input type="text" th:field="*{data}"/>
+    <input type="date" th:field="*{data}"/>
     <input type="number" th:field="*{weight}"/>
 
     <button type="submit">Save</button>

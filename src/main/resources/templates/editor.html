@@ -6,17 +6,23 @@
 </head>
 <body>
 
-<!--<form th:action="@{/save}" th:object="${objectBericht}" method="post">-->
+<!--<form th:action="@{/update}" th:object="${objectBericht}" method="post">
+
+   <!-- <input th:placeholder="${id}" type="text" th:field="*{id}"/>
+    <p th:text="${data}"></p>
+    <input th:placeholder="${data}" type="date" th:field="*{data}"/>
+    <P th:text="${weight}"></P>
+    <input th:attr="value = 77777" type="hidden" th:field="${weight}"/>
 
 
-<p th:text="${data}"></p>
-<input placeholder="33.22.1999" type="date" th:field="*{data}"/>
-<P th:text="${weight}"></P>
-<input placeholder="777" type="number" th:field="*{weight}"/>
-
+    <button type="submit">Save</button>
+</form>-->
+<form th:action="@{/update}" method="post">
+<input type="text" name="r" th:value="${id}"/>
+<input type="text" name="rb" th:value="${data}"/>
+<input type="text" name="rbn" th:value="${weight}"/>
 <button type="submit">Save</button>
-
-
+</form>
 </body>
 <hr>
 <div th:replace="template :: foot"></div>

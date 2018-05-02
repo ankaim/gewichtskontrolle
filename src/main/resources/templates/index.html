@@ -6,34 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap 101 Template</title>
     <!-- Bootstrap -->
-    <link hre<div class="container">
-    <div class="panel panel-default">
-        <!-- Default panel contents -->
-        <div class="panel-heading">Panel heading</div>
-        <div class="panel-body">
-        </div>
-        <!-- Table -->
-        <table class="table">
-            <thead>
-            <a href="form" class="btn btn-success eBtn">New</a>
-            <tr>
-                <th>ID</th>
-                <th>Data</th>
-                <th>Weight</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="bericht :${data}">
-                <td th:text="${bericht.id}"></td>
-                <td th:text="${bericht.data}"></td>
-                <td th:text="${bericht.weight}"></td>
-                <td><a th:href="@{/editor/{id}(id=${bericht.id})}" class="btn btn-primary eBtn">Edit</a></td>
-                <td><a th:href="@{/delete/{id}(id=${bericht.id})}" class="btn btn-danger eBtn">Delete</a></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>f="bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <div class="container">
